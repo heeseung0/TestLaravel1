@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
     <head>
 
     </head>
     <body>
-
+        테스트중3
     </body>
 </html>
+
+
+
+<?php

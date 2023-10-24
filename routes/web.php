@@ -18,6 +18,19 @@ Route::middleware(['login'])->group(function() {
         //return view('main');
         return view('welcome');
     });
+
+    Route::get('/viewtest1', function(){
+        return view('/test/viewtest1');
+    });
+    Route::get('/viewtest2', function(){
+        return view('/test/viewtest2');
+    });
+    Route::get('/viewtest3', function(){
+        return view('/test/viewtest3');
+    });
+    Route::get('/viewtest4', function(){
+        return view('/test/viewtest4');
+    });
 });
 
 Auth::routes();
