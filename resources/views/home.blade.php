@@ -12,8 +12,8 @@
                     <ul>
                         <li class="baseinfo_ul">기준정보
                             <ul class="baseinfo_li" hidden>
-                                <li><a href="/viewtest1" target="main-iframe">사용자관리</a></li>
-                                <li><a href="/viewtest2" target="main-iframe">표준코드 설정</a></li>
+                                <li><a href="/baseinfo/user" target="main-iframe">사용자관리</a></li>
+                                <li><a href="/baseinfo/commoncode" target="main-iframe">표준코드 설정</a></li>
                                 <li><a href="/viewtest3" target="main-iframe">업체관리</a></li>
                                 <li><a href="/viewtest4" target="main-iframe">품목관리</a></li>
                                 <li><a href="/viewtest1" target="main-iframe">BOM 관리</a></li>

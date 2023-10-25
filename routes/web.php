@@ -19,6 +19,14 @@ Route::middleware(['login'])->group(function() {
         return view('welcome');
     });
 
+    Route::get('/baseinfo/user', function(){
+        return view('/baseinfo/user');
+    });
+
+    Route::get('/baseinfo/commoncode', function(){
+        return view('/baseinfo/commoncode');
+    });
+
     Route::get('/viewtest1', function(){
         return view('/test/viewtest1');
     });
