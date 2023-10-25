@@ -9,10 +9,41 @@
             <div class="container-nav">
                 <nav>
                     <img class="nav-logo" src="/images/MES_Logo.png">
-                    <button id="system-btn" class="nav-btn" onclick="system_func()">시스템관리</button>
-                    <button id="baseinfo-btn" class="nav-btn" onclick="baseinfo_func()">기준정보</button>
-                    <button id="wks-btn" class="nav-btn" onclick="wks_func()">생산관리</button>
-                    <button id="product-btn" class="nav-btn" onclick="product_func()">제품관리</button>
+                    <ul>
+                        <li class="baseinfo_ul">기준정보
+                            <ul class="baseinfo_li" hidden>
+                                <li><a href="/viewtest1" target="main-iframe">사용자관리</a></li>
+                                <li><a href="/viewtest2" target="main-iframe">표준코드 설정</a></li>
+                                <li><a href="/viewtest3" target="main-iframe">업체관리</a></li>
+                                <li><a href="/viewtest4" target="main-iframe">품목관리</a></li>
+                                <li><a href="/viewtest1" target="main-iframe">BOM 관리</a></li>
+                                <li><a href="/viewtest2" target="main-iframe">불량코드 정보</a></li>
+                            </ul>
+                        </li>
+                        <li class="order_ul">수주관리
+                            <ul class="order_li" hidden>
+                                <li><a href="/viewtest3" target="main-iframe">수주처리</a></li>
+                                <li><a href="/viewtest4" target="main-iframe">출하지시</a></li>
+                                <li><a href="/viewtest1" target="main-iframe">제품출고</a></li>
+                                <li><a href="/viewtest2" target="main-iframe">판매처리</a></li>
+                            </ul>
+                        </li>
+                        <li class="process_ul">공정관리
+                            <ul class="process_li" hidden>
+                                <li><a href="/viewtest3" target="main-iframe">생산계획</a></li>
+                                <li><a href="/viewtest4" target="main-iframe">작업지시</a></li>
+                                <li><a href="/viewtest1" target="main-iframe">작업일보</a></li>
+                            </ul>
+                        </li>
+                        <li class="log_ul">물류관리
+                            <ul class="log_li" hidden>
+                                <li><a href="/viewtest2" target="main-iframe">자재 발주</a></li>
+                                <li><a href="/viewtest3" target="main-iframe">자재 입고</a></li>
+                                <li><a href="/viewtest4" target="main-iframe">자재 불출</a></li>
+                                <li><a href="/viewtest1" target="main-iframe">재고 조회</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </nav>
             </div>
             <div class="container-main">
