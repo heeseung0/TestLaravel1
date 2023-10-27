@@ -3,6 +3,16 @@ html, body{
     height: 100%;
 }
 
+.ui-jqgrid-sortable, .ui-widget-content{
+    border: 1px solid black;
+}
+
+.ui-widget-content > td{
+    border: 1px solid #051b11;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .container{
     width: 100%;
     height: 100%;
