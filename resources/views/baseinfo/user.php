@@ -5,13 +5,14 @@
     <title>Title</title>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="/jquery.jqGrid-4.4.3/js/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="/jquery.jqGrid-4.4.3/js/i18n/grid.locale-kr.js"></script>
-    <script type="text/javascript" src="/jquery.jqGrid-4.4.3/js/jquery.jqGrid.min.js"></script>
-    <script type="text/javascript" src="/jquery.jqGrid-4.4.3/js/jquery.jqGrid.src.js"></script>
+    <script type="text/javascript" src="/jqGrid-master/js/i18n/grid.locale-kr.js"></script>
+    <script type="text/javascript" src="/jqGrid-master/js/jquery.jqGrid.min.js"></script>
+    <script type="text/javascript" src="/jqGrid-master/js/jquery.jqGrid.src.js"></script>
+
 
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/baseinfo/user.css">
+    <link rel="stylesheet" href="/jqGrid-master/css/ui.jqgrid.css">
     <script type="text/javascript" src="/js/baseinfo/user.js"></script>
 
 </head>

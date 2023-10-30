@@ -1,4 +1,6 @@
-let searchResultColNames = ['번호','이름','아이디','등급','이메일','생성날자'];
+let searchResultColNames = [
+    '번호','이름','아이디','등급','이메일','생성날자'
+];
 let searchResultColModel = [
     {name: 'id',        index:'id',         align:'center', width: '50', hidden:false},
     {name: 'name',      index:'name',       align:'center', width:'100'},
@@ -8,11 +10,20 @@ let searchResultColModel = [
     {name: 'created_at',index:'created_at', align:'left', width:'300'},
 ]
 
+let nullFormatter = function(cellvalue, options, rowObject) {
+    if(cellvalue === undefined || isNull(cellvalue) || cellvalue === 'NULL') {
+        cellvalue = '';
+    }
+
+    return cellvalue;
+}
+
 $(document).ready(function () {
+    $("#test0").hide();
+    
+
+
     $(document).on("click", "button[name='test']", function () {
-        $("#test0").hide();
-
-
         $.ajax({
             type: "get",
             url: "/baseinfo/user/getUser",
