@@ -20,10 +20,15 @@
     <div class="container">
         <div class="top">
             <div class="buttons">
-                <button name="test">테스트용</button>
+                <button name="test">조회</button>
             </div>
             <div class="options">
-
+                <div class="option">
+                    <label class="option-col-2" style="display:inline-block">이름</label><input id="input_name" type="text" class="option-col-2">
+                </div>
+                <div class="option">
+                    <label class="option-col-3" style="display:inline-block">가입 날짜</label><input id="input_date1" type="date" class="option-col-3">~<input id="input_date2" type="date" class="option-col-3">
+                </div>
             </div>
         </div>
         <div class="middle">
@@ -38,7 +43,6 @@
 
             <div id="jqxWidget">
                 <table id="testGrid"></table>
-                <div id="pager"></div>
             </div>
         </div>
     </div>

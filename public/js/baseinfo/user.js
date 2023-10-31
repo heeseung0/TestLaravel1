@@ -20,33 +20,41 @@ let nullFormatter = function(cellvalue, options, rowObject) {
 
 $(document).ready(function () {
     $("#test0").hide();
-    
-
+    $('#input_date1').val(new Date().toISOString().split('T')[0]);
+    $('#input_date2').val(new Date().toISOString().split('T')[0]);
 
     $(document).on("click", "button[name='test']", function () {
         $.ajax({
             type: "get",
             url: "/baseinfo/user/getUser",
-            success: (data) => {
-                console.log(data);
+            data: {
+                name: $('#input_name').val(),
+                date1: $('#input_date1').val(),
+                date2: $('#input_date2').val()
+            },
+            success: (res) => {
+                console.log(res);
+
+                if (res != null) {
+                    $('#testGrid').jqGrid('clearGridData')
+                    $('#testGrid').jqGrid('setGridParam', {data: res, page: 1})
+                    $('#testGrid').trigger('reloadGrid');
+                }
 
                 let jqGridConfig = {
                     datatype: "local",
-                    data: data,
+                    data: res,
                     colNames: searchResultColNames,
                     colModel: searchResultColModel,
+                    autowidth: true,
                 }
 
                 $("#testGrid").jqGrid(jqGridConfig);
-            },error: (data) => {
-                console.log(data);
+            },error: (err) => {
+                console.log(err);
             }
         })
-
-
-
-
-
-
     });
+
+
 });
