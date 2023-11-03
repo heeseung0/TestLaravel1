@@ -45,3 +45,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/baseinfo/user/getUser', [App\Http\Controllers\BaseInfoController::class, 'getUser']);
+Route::post('/baseinfo/user/saveUser', [App\Http\Controllers\BaseInfoController::class, 'saveUser']);

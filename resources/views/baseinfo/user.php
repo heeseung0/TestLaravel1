@@ -35,10 +35,12 @@
             <div id="test0">
                 <h1>jqxGrid(대체 가능)로 users 테이블에서 options조건에 따라 출력</h1>
                 <h2>user_level로 권한, 보직 결정</h2>
-                <h3>level1 : 평사원(근로자)</h3>
-                <h3>level2 : 관리자(현장)</h3>
-                <h3>level3 : 관리자(해당 분야 All '생산,공정,물류 etc')</h3>
-                <h3>level1024 : 사장</h3>
+                <h3>level1 : 단기 직원</h3>
+                <h3>level2 : 평사원(근로자)</h3>
+                <h3>level3 : 관리자(현장)</h3>
+                <h3>level4 : 관리자(해당 분야 All '생산,공정,물류 etc')</h3>
+                <h3>level5 : 사장</h3>
+                <h3>level1024 : Admin</h3>
             </div>
 
             <div id="jqxWidget">

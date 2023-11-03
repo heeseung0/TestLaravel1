@@ -1,14 +1,22 @@
 let searchResultColNames = [
-    '관리','번호','이름','아이디','등급','이메일','생성날자'
+    '관리','번호','이름','아이디','등급','이메일','생성날짜', '수정날짜'
 ];
 let searchResultColModel = [
     {name:'empty', index: 'empty', align: "center", formatter:formatOpt, sortable: false, width:150},
     {name: 'id',        index:'id',         align:'center', width: '50', hidden:false},
     {name: 'name',      index:'name',       align:'center', width:'100'},
     {name: 'user_id',   index:'user_id',    align:'center', width:'200'},
-    {name: 'user_level',index:'user_level', align:'center', width:'100', editable:true, edittype:"select", editoptions:{value:{1:'1', 2:'2', 3:'3', 4:'4', 5:'5', 6:'1024'}}},
+    {name: 'user_level',index:'user_level', align:'center', width:'300', editable:true, edittype:"select", editoptions:{value:{
+                1:'(1)단기 직원',
+                2:'(2)평사원(근로자)',
+                3:'(3)관리자(현장)',
+                4:'(4)관리자(총)',
+                5:'(5)사장',
+                1024:'(1024)Admin'}
+    }},
     {name: 'email',     index:'email',      align:'left', width:'300'},
     {name: 'created_at',index:'created_at', align:'left', width:'300'},
+    {name: 'updated_at',index:'updated_at', align:'left', width:'300'},
 ]
 
 let nullFormatter = function(cellvalue, options, rowObject) {
@@ -77,17 +85,17 @@ function edit(id){
     $("#testGrid").editRow(id, true);
 }
 function save(id){
-    var row = $("#testGrid").jqGrid('getRowData', id);
-    console.log("여기 만들어야 함");
+    let row = $("#testGrid").jqGrid('getRowData', id);
+    console.log(row);
 
-    // $("#list").jqGrid('saveRow',id, {
-    //     "url": "/baseinfo/user/saveUser?idx="+row.idx,
-    //     "mtype": "POST",
-    //     "succesfunc": function(response) {
-    //
-    //         return true;
-    //     }
-    // });
+    $("#testGrid").editRow(id, false);
+    $("#testGrid").jqGrid('saveRow', id, {
+        "url": "/baseinfo/user/saveUser",
+        "mtype": "POST",
+        "postData": {
+            data: row
+        }
+    });
 }
 function cancel(id){
     $("#testGrid").restoreRow(id);

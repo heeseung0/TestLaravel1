@@ -18,8 +18,7 @@ class BaseInfoController extends Controller
         $this->middleware('auth');
     }
 
-    public function getUser()
-    {
+    public function getUser(){
         $name = $_GET["name"];
         $date1 = $_GET["date1"];
         $date2 = $_GET["date2"];
@@ -32,5 +31,15 @@ class BaseInfoController extends Controller
             #->where('created_at', '<=',Carbon::createFromDate(2015, 5, 21))
             ->get();
         return $users;
+    }
+
+    public function saveUser(){
+        // 쿼리 빌더를 사용 하지 않은 이유 : 현재 날짜 시간 가져 오는 함수가 안 먹혀서
+        DB::statement(
+            "UPDATE users SET "
+            ." user_level = " .$_POST['user_level']
+            .",updated_at = " ."FROM_UNIXTIME(UNIX_TIMESTAMP(), '%Y-%m-%d %h:%i:%s')"
+            ." WHERE id = " .$_POST['id']
+        );
     }
 }
