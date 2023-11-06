@@ -46,3 +46,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/baseinfo/user/getUser', [App\Http\Controllers\BaseInfoController::class, 'getUser']);
 Route::post('/baseinfo/user/saveUser', [App\Http\Controllers\BaseInfoController::class, 'saveUser']);
+Route::get('/baseinfo/common/gets', [App\Http\Controllers\BaseInfoController::class, 'getCommon']);
+Route::post('/baseinfo/common/save', [App\Http\Controllers\BaseInfoController::class, 'saveCommon']);
+

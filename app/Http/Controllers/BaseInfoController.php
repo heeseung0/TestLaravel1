@@ -42,4 +42,27 @@ class BaseInfoController extends Controller
             ." WHERE id = " .$_POST['id']
         );
     }
+
+    public function getCommon(){
+        $factory = $_GET["factory"];
+        $code = $_GET["code"];
+
+        $common = DB::table('common')
+            ->where('factory','like','%'.$factory.'%')
+            ->where('code','like','%'.$code.'%')
+            ->get();
+        return $common;
+    }
+
+    public function saveCommon(){
+        // 나중에 프로시저로 바꾸고, 오류 내용 리턴 해줘야 함.
+
+        DB::table('common')
+            ->where('id','like',$_POST['id'])
+            ->update([
+                'code2' => $_POST['code2'],
+                'value' => $_POST['value'],
+                'value2' => $_POST['value2']
+            ]);
+    }
 }
