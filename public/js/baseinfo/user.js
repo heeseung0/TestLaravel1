@@ -33,6 +33,12 @@ $(document).ready(function () {
     // $('#input_date1').val(new Date().toISOString().split('T')[0]);
     $('#input_date2').val(new Date().toISOString().split('T')[0]);
 
+    $(document).on("keypress", "input[id='input_name'],input[id='input_date1'],input[id='input_date2']", (e) => {
+        if(e.keyCode == 13){
+            $("button[name='test']").click();
+        }
+    })
+
     $(document).on("click", "button[name='test']", function () {
         $.ajax({
             type: "get",

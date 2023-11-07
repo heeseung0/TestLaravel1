@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Grpc\Call;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Psy\Readline\Hoa\StreamOut;
@@ -50,19 +51,47 @@ class BaseInfoController extends Controller
         $common = DB::table('common')
             ->where('factory','like','%'.$factory.'%')
             ->where('code','like','%'.$code.'%')
+            ->orderBy('factory','ASC')
+            ->orderBy('code','ASC')
+            ->orderBy('code2','ASC')
             ->get();
         return $common;
     }
 
     public function saveCommon(){
         // 나중에 프로시저로 바꾸고, 오류 내용 리턴 해줘야 함.
+        var_dump($_POST);
 
-        DB::table('common')
-            ->where('id','like',$_POST['id'])
-            ->update([
-                'code2' => $_POST['code2'],
-                'value' => $_POST['value'],
-                'value2' => $_POST['value2']
-            ]);
+        $message = " ";
+        $state = 0;
+        DB::select("call proc_common_CU(?,?,?,?,?,?,?,?,?)",
+            array(
+                $message,
+                $state,
+                $_POST['id'],
+                $_POST['factory'],
+                $_POST['code'],
+                $_POST['code2'],
+                $_POST['value'],
+                $_POST['value2'],
+                'false'
+            )
+        );
+
+        return $message;
+        /*
+         * 폐기 : 프로시저로 변경
+        if($_POST['oper'] == "edit") {
+            DB::table('common')
+                ->where('id', 'like', $_POST['id'])
+                ->update([
+                    'code2' => $_POST['code2'],
+                    'value' => $_POST['value'],
+                    'value2' => $_POST['value2']
+                ]);
+        }else{
+            return;
+        }
+        */
     }
 }

@@ -3,9 +3,9 @@ let searchResultColNames = [
 ];
 let searchResultColModel = [
     {name:'empty', index: 'empty', align: "center", formatter:formatOpt, sortable: false, width:150},
-    {name: 'id',        index:'id',         align:'center', width: '100', hidden:false},
-    {name: 'factory',      index:'factory',       align:'center', width:'100'},
-    {name: 'code',   index:'code',    align:'center', width:'100'},
+    {name: 'id',        index:'id',         align:'center', width: '100', hidden:true},
+    {name: 'factory',      index:'factory',       align:'center', width:'100', editable:true,},
+    {name: 'code',   index:'code',    align:'center', width:'100', editable:true,},
     {name: 'code2',   index:'code2',    align:'center', width:'100', editable:true,},
     {name: 'value',   index:'value',    align:'center', width:'150', editable:true,},
     {name: 'value2',   index:'value2',    align:'center', width:'150', editable:true,},
@@ -22,6 +22,11 @@ let nullFormatter = function(cellvalue, options, rowObject) {
 
 $(document).ready(function () {
     $("#test0").hide();
+    $(document).on("keypress", "input[id='input_factory'],input[id='input_code']", (e) => {
+        if(e.keyCode == 13){
+            $("button[name='search']").click();
+        }
+    })
 
     $(document).on("click", "button[name='search']", function () {
         $.ajax({
@@ -55,7 +60,16 @@ $(document).ready(function () {
         })
     });
 
+    $(document).on("click", "button[name='add']", function () {
+        let init_data = {
+            factory:'F001',
+            fixed:true
+        };
+        let rowId = $("#testGrid").getGridParam("reccount");
 
+        $("#testGrid").jqGrid("addRowData", rowId+1, init_data, 'first');
+        edit(rowId+1);
+    });
 });
 
 
@@ -82,10 +96,7 @@ function save(id){
     $("#testGrid").editRow(id, false);
     $("#testGrid").jqGrid('saveRow', id, {
         "url": "/baseinfo/common/save",
-        "mtype": "POST",
-        "postData": {
-            data: row
-        }
+        "mtype": "POST"
     });
 }
 function cancel(id){

@@ -21,6 +21,7 @@
     <div class="top">
         <div class="buttons">
             <button name="search">조회</button>
+            <button name="add">행 추가</button>
         </div>
         <div class="options">
             <div class="option">
