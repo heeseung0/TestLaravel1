@@ -14,6 +14,7 @@ class VerifyCsrfToken extends Middleware
     //CSRF 검증에서 제외해야 하는 URI
     protected $except = [
         'http://laravel1.localhost/baseinfo/user/saveUser',
-        'http://laravel1.localhost/baseinfo/common/save'
+        'http://laravel1.localhost/baseinfo/common/save',
+        'http://laravel1.localhost/baseinfo/common/del',
     ];
 }

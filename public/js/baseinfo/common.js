@@ -80,6 +80,7 @@ function formatOpt(cellvalue, options, rowObject){
     str += " <button onclick=\"javascript:edit('" + row_id + "')\">수정</button>";
     str += " <button onclick=\"javascript:save('" + row_id + "')\">저장</button>";
     str += " <button onclick=\"javascript:cancel('" + row_id + "')\">취소</button>";
+    str += " <button onclick=\"javascript:del('" + row_id + "')\">삭제</button>";
     str += "</div>";
 
     return str;
@@ -101,4 +102,19 @@ function save(id){
 }
 function cancel(id){
     $("#testGrid").restoreRow(id);
+}
+function del(id){
+    let row = $("#testGrid").jqGrid('getRowData', id);
+    $.ajax({
+        type: "post",
+        url: "/baseinfo/common/del",
+        data: {id: row.id},
+        success: (res) => {
+            alert('성공적으로 삭제되었습니다.');
+            $("#testGrid").delRowData(id);
+        },error: (err) => {
+            console.log(err);
+        }
+    });
+
 }

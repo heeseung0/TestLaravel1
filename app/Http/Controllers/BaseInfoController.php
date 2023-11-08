@@ -59,9 +59,7 @@ class BaseInfoController extends Controller
     }
 
     public function saveCommon(){
-        // 나중에 프로시저로 바꾸고, 오류 내용 리턴 해줘야 함.
-        var_dump($_POST);
-
+        // 나중에 프로시저로 오류 내용 리턴 해줘야 함.
         $message = " ";
         $state = 0;
         DB::select("call proc_common_CU(?,?,?,?,?,?,?,?,?)",
@@ -93,5 +91,11 @@ class BaseInfoController extends Controller
             return;
         }
         */
+    }
+
+    public function deleteCommon(){
+        DB::table('common')
+            ->where('id','like',$_POST['id'])
+            ->delete();
     }
 }
