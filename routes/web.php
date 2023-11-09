@@ -27,6 +27,11 @@ Route::middleware(['login'])->group(function() {
         return view('/baseinfo/commoncode');
     });
 
+    Route::get('/baseinfo/company', function(){
+        return view('/baseinfo/company');
+    });
+
+    //이하 테스트 코드
     Route::get('/viewtest1', function(){
         return view('/test/viewtest1');
     });
@@ -39,6 +44,7 @@ Route::middleware(['login'])->group(function() {
     Route::get('/viewtest4', function(){
         return view('/test/viewtest4');
     });
+    //이상 테스트 코드
 });
 
 Auth::routes();
@@ -49,4 +55,7 @@ Route::post('/baseinfo/user/saveUser', [App\Http\Controllers\BaseInfoController:
 Route::get('/baseinfo/common/gets', [App\Http\Controllers\BaseInfoController::class, 'getCommon']);
 Route::post('/baseinfo/common/save', [App\Http\Controllers\BaseInfoController::class, 'saveCommon']);
 Route::post('/baseinfo/common/del', [App\Http\Controllers\BaseInfoController::class, 'deleteCommon']);
+Route::get('/baseinfo/company/gets', [App\Http\Controllers\BaseInfoController::class, 'getCompany']);
+Route::post('/baseinfo/company/save', [App\Http\Controllers\BaseInfoController::class, 'saveCompany']);
+Route::post('/baseinfo/company/del', [App\Http\Controllers\BaseInfoController::class, 'deleteCompany']);
 

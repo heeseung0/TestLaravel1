@@ -6,6 +6,7 @@ use Grpc\Call;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Psy\Readline\Hoa\StreamOut;
+use function Ramsey\Uuid\Lazy\toString;
 
 class BaseInfoController extends Controller
 {
@@ -95,6 +96,40 @@ class BaseInfoController extends Controller
 
     public function deleteCommon(){
         DB::table('common')
+            ->where('id','like',$_POST['id'])
+            ->delete();
+    }
+
+    public function getCompany(){
+        return DB::table('company')
+            ->where('name','like','%'.$_GET['name'].'%')
+            ->where('code','like','%'.$_GET['code'].'%')
+            ->where('address','like','%'.$_GET['addr'].'%')
+            ->orderBy('id','ASC')
+            ->get();
+    }
+
+    public function saveCompany(){
+        // 나중에 프로시저로 오류 내용 리턴 해줘야 함.
+        // Unicode 한글 오류 해결 = iconv 함수
+        var_dump($_POST);
+        $message = " ";
+        $state = 0;
+        DB::select("call proc_company_CU(?,?,?,?,?,?)",
+            array(
+                $message,
+                $state,
+                $_POST['id'],
+                $_POST['name'],
+                $_POST['code'],
+                $_POST["address"]
+            )
+        );
+        return $message;
+    }
+
+    public function deleteCompany(){
+        DB::table('company')
             ->where('id','like',$_POST['id'])
             ->delete();
     }

@@ -16,5 +16,7 @@ class VerifyCsrfToken extends Middleware
         'http://laravel1.localhost/baseinfo/user/saveUser',
         'http://laravel1.localhost/baseinfo/common/save',
         'http://laravel1.localhost/baseinfo/common/del',
+        'http://laravel1.localhost/baseinfo/company/save',
+        'http://laravel1.localhost/baseinfo/company/del',
     ];
 }
