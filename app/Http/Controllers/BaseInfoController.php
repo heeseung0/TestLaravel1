@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Grpc\Call;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Mockery\Undefined;
 use Psy\Readline\Hoa\StreamOut;
 use function Ramsey\Uuid\Lazy\toString;
 
@@ -110,9 +111,6 @@ class BaseInfoController extends Controller
     }
 
     public function saveCompany(){
-        // 나중에 프로시저로 오류 내용 리턴 해줘야 함.
-        // Unicode 한글 오류 해결 = iconv 함수
-        var_dump($_POST);
         $message = " ";
         $state = 0;
         DB::select("call proc_company_CU(?,?,?,?,?,?)",
@@ -131,6 +129,60 @@ class BaseInfoController extends Controller
     public function deleteCompany(){
         DB::table('company')
             ->where('id','like',$_POST['id'])
+            ->delete();
+    }
+
+    public function getBOM(){
+        if($_GET['up_cd']=='nope'){
+            return DB::table('bom')
+                ->where('prd_cd','like','%'.$_GET['code'].'%')
+                ->where('prd_name','like','%'.$_GET['name'].'%')
+                ->where('up_cd','like','')
+                ->orderBy('prd_cd','ASC')
+                ->get();
+        }else{
+            return DB::table('bom')
+                ->where('up_cd','like','%'.$_GET['up_cd'].'%')
+                ->orderBy('prd_cd','ASC')
+                ->get();
+        }
+    }
+
+    public function saveBOM(){  // 그냥 다음부턴 프로시저 쓰는게 낫다. 제대로 동작 안함... (cd값만 수정하면 증식함)
+        var_dump($_POST);
+        $cd = $_POST['prd_cd'];
+
+        if( DB::table('bom')
+            ->where('prd_cd', 'like', $cd)
+            ->count() == 0) {
+            DB::table('bom')
+                ->insert(array(
+                    'id'        =>  0,
+                    'prd_cd'    =>  $cd,
+                    'prd_name'  =>  $_POST['prd_name'],
+                    'prd_type'  =>  $_POST['prd_type'],
+                    'prd_unit'  =>  $_POST['prd_unit'],
+                    'up_cd'     =>  isset($_POST['up_cd']) ? $_POST['up_cd'] : '',
+                    'need_count'=>  isset($_POST['need_count']) ? $_POST['need_count'] : '0',
+                    'manufacture'=> $_POST['manufacture']
+                    ));
+        }else{
+            DB::table('bom')
+                ->where('id','like',$_POST['id'])
+                ->update(array(
+                    'prd_name'  =>  $_POST['prd_name'],
+                    'prd_type'  =>  $_POST['prd_type'],
+                    'prd_unit'  =>  $_POST['prd_unit'],
+                    'up_cd'     =>  isset($_POST['up_cd']) ? $_POST['up_cd'] : '',
+                    'need_count'=>  isset($_POST['need_count']) ? $_POST['need_count'] : '0',
+                    'manufacture'=> $_POST['manufacture']
+                ));
+        }
+    }
+
+    public function deleteBOM(){
+        DB::table('bom')
+            ->where('prd_cd','like',$_POST['prd_cd'])
             ->delete();
     }
 }
