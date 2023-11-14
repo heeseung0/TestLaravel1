@@ -35,6 +35,10 @@ Route::middleware(['login'])->group(function() {
         return view('/baseinfo/bom');
     });
 
+    Route::get('/baseinfo/errorcode', function(){
+        return view('/baseinfo/errorcode');
+    });
+
     //이하 테스트 코드
     Route::get('/viewtest1', function(){
         return view('/test/viewtest1');
@@ -65,4 +69,7 @@ Route::post('/baseinfo/company/del', [App\Http\Controllers\BaseInfoController::c
 Route::get('/baseinfo/bom/gets', [App\Http\Controllers\BaseInfoController::class, 'getBOM']);
 Route::post('/baseinfo/bom/save', [App\Http\Controllers\BaseInfoController::class, 'saveBOM']);
 Route::post('/baseinfo/bom/del', [App\Http\Controllers\BaseInfoController::class, 'deleteBOM']);
+Route::get('/baseinfo/error/gets', [App\Http\Controllers\BaseInfoController::class, 'getError']);
+Route::post('/baseinfo/error/save', [App\Http\Controllers\BaseInfoController::class, 'saveError']);
+Route::post('/baseinfo/error/del', [App\Http\Controllers\BaseInfoController::class, 'deleteError']);
 

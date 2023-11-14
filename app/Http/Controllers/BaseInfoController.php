@@ -149,7 +149,6 @@ class BaseInfoController extends Controller
     }
 
     public function saveBOM(){  // 그냥 다음부턴 프로시저 쓰는게 낫다. 제대로 동작 안함... (cd값만 수정하면 증식함)
-        var_dump($_POST);
         $cd = $_POST['prd_cd'];
 
         if( DB::table('bom')
@@ -183,6 +182,39 @@ class BaseInfoController extends Controller
     public function deleteBOM(){
         DB::table('bom')
             ->where('prd_cd','like',$_POST['prd_cd'])
+            ->delete();
+    }
+
+    public function getError(){
+        return DB::table('error')
+            ->where('errorcode','like','%'.$_GET['code'].'%')
+            ->get();
+    }
+
+    public function saveError(){
+        if(DB::table('error')
+                ->where('id', 'like', $_POST['id'])
+                ->count() == 0) {
+            DB::table('error')
+                ->insert(array(
+                    'id'        =>  0,
+                    'errorcode'    =>  $_POST['errorcode'],
+                    'explanation'  =>  $_POST['explanation'],
+                ));
+        }else{
+            DB::table('error')
+                ->where('id','like',$_POST['id'])
+                ->update(array(
+                    'id'            =>  $_POST['id'],
+                    'errorcode'     =>  $_POST['errorcode'],
+                    'explanation'   =>  $_POST['explanation']
+                ));
+        }
+    }
+
+    public function deleteError(){
+        DB::table('error')
+            ->where('id','like',$_POST['id'])
             ->delete();
     }
 }
