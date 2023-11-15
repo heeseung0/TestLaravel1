@@ -25,10 +25,10 @@
         </div>
         <div class="options">
             <div class="option">
-                <label class="option-col-2" style="display:inline-block">공장코드</label><input id="input_factory" type="text" class="option-col-2">
+                <label class="option-label" style="display:inline-block">공장코드</label><input id="input_factory" type="text" class="option-col-2">
             </div>
             <div class="option">
-                <label class="option-col-2" style="display:inline-block">코드</label><input id="input_code" type="text" class="option-col-2">
+                <label class="option-label" style="display:inline-block">코드</label><input id="input_code" type="text" class="option-col-2">
             </div>
         </div>
     </div>

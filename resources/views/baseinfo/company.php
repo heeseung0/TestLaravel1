@@ -25,13 +25,14 @@
         </div>
         <div class="options">
             <div class="option">
-                <label class="option-col-2" style="display:inline-block">회사명</label><input id="input_name" type="text" class="option-col-2">
+                <label class="option-label" style="display:inline-block">회사명</label><input id="input_name" type="text" class="option-col-2">
             </div>
             <div class="option">
-                <label class="option-col-2" style="display:inline-block">코드</label><input id="input_code" type="text" class="option-col-2">
+                <label class="option-label" style="display:inline-block">코드</label><input id="input_code" type="text" class="option-col-3">
             </div>
+            <br>
             <div class="option">
-                <label class="option-col-2" style="display:inline-block">주소</label><input id="input_addr" type="text" class="option-col-2">
+                <label class="option-label" style="display:inline-block">주소</label><input id="input_addr" type="text" class="option-col-2">
             </div>
         </div>
     </div>
@@ -43,6 +44,8 @@
         <div id="jqxWidget">
             <table id="testGrid"></table>
         </div>
+
+
     </div>
 </div>
 </body>

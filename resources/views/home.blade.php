@@ -22,7 +22,7 @@
                         </li>
                         <li class="order_ul">수주관리
                             <ul class="order_li" hidden>
-                                <li><a href="/viewtest3" target="main-iframe">수주처리</a></li>
+                                <li><a href="/orderManage/order" target="main-iframe">수주처리</a></li>
                                 <li><a href="/viewtest4" target="main-iframe">출하지시</a></li>
                                 <li><a href="/viewtest1" target="main-iframe">제품출고</a></li>
                                 <li><a href="/viewtest2" target="main-iframe">판매처리</a></li>

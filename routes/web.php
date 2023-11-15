@@ -22,21 +22,21 @@ Route::middleware(['login'])->group(function() {
     Route::get('/baseinfo/user', function(){
         return view('/baseinfo/user');
     });
-
     Route::get('/baseinfo/commoncode', function(){
         return view('/baseinfo/commoncode');
     });
-
     Route::get('/baseinfo/company', function(){
         return view('/baseinfo/company');
     });
-
     Route::get('/baseinfo/bom', function(){
         return view('/baseinfo/bom');
     });
-
     Route::get('/baseinfo/errorcode', function(){
         return view('/baseinfo/errorcode');
+    });
+
+    Route::get('/orderManage/order', function(){
+        return view('/orderManage/order');
     });
 
     //이하 테스트 코드
@@ -58,6 +58,7 @@ Route::middleware(['login'])->group(function() {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/baseinfo/user/getUser', [App\Http\Controllers\BaseInfoController::class, 'getUser']);
 Route::post('/baseinfo/user/saveUser', [App\Http\Controllers\BaseInfoController::class, 'saveUser']);
 Route::get('/baseinfo/common/gets', [App\Http\Controllers\BaseInfoController::class, 'getCommon']);
@@ -72,4 +73,8 @@ Route::post('/baseinfo/bom/del', [App\Http\Controllers\BaseInfoController::class
 Route::get('/baseinfo/error/gets', [App\Http\Controllers\BaseInfoController::class, 'getError']);
 Route::post('/baseinfo/error/save', [App\Http\Controllers\BaseInfoController::class, 'saveError']);
 Route::post('/baseinfo/error/del', [App\Http\Controllers\BaseInfoController::class, 'deleteError']);
+
+Route::get('/baseinfo/order/gets', [App\Http\Controllers\BaseInfoController::class, 'getOrder']);
+Route::post('/baseinfo/order/save', [App\Http\Controllers\BaseInfoController::class, 'saveOrder']);
+Route::post('/baseinfo/order/del', [App\Http\Controllers\BaseInfoController::class, 'deleteOrder']);
 
