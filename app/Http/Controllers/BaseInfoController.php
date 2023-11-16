@@ -133,7 +133,10 @@ class BaseInfoController extends Controller
     }
 
     public function getBOM(){
-        if($_GET['up_cd']=='nope'){
+        if($_GET['up_cd']=='all'){
+            return DB::table('bom')
+                ->get();
+        }else if($_GET['up_cd']=='nope'){
             return DB::table('bom')
                 ->where('prd_cd','like','%'.$_GET['code'].'%')
                 ->where('prd_name','like','%'.$_GET['name'].'%')

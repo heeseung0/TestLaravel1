@@ -74,7 +74,7 @@ Route::get('/baseinfo/error/gets', [App\Http\Controllers\BaseInfoController::cla
 Route::post('/baseinfo/error/save', [App\Http\Controllers\BaseInfoController::class, 'saveError']);
 Route::post('/baseinfo/error/del', [App\Http\Controllers\BaseInfoController::class, 'deleteError']);
 
-Route::get('/baseinfo/order/gets', [App\Http\Controllers\BaseInfoController::class, 'getOrder']);
-Route::post('/baseinfo/order/save', [App\Http\Controllers\BaseInfoController::class, 'saveOrder']);
-Route::post('/baseinfo/order/del', [App\Http\Controllers\BaseInfoController::class, 'deleteOrder']);
+Route::get('/orderManage/order/gets', [App\Http\Controllers\OrderManageController::class, 'getOrder']);
+Route::post('/orderManage/order/save', [App\Http\Controllers\OrderManageController::class, 'saveOrder']);
+Route::post('/orderManage/order/del', [App\Http\Controllers\OrderManageController::class, 'deleteOrder']);
 

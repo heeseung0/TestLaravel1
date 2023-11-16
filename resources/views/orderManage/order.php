@@ -5,6 +5,7 @@
     <title>Title</title>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="/jqGrid-master/js/i18n/grid.locale-kr.js"></script>
     <script type="text/javascript" src="/jqGrid-master/js/jquery.jqGrid.min.js"></script>
     <script type="text/javascript" src="/jqGrid-master/js/jquery.jqGrid.src.js"></script>
@@ -28,19 +29,20 @@
                 <label class="option-label" style="display:inline-block">수주일</label><input id="input_date1" type="date" class="option-col-3">~<input id="input_date2" type="date" class="option-col-3">
             </div>
             <div class="option">
-                <label class="option-label" style="display:inline-block">수주번호</label><input id="input_factory" type="text" class="option-col-2">
+                <label class="option-label" style="display:inline-block">수주번호</label><input id="input_num" type="text" class="option-col-2">
             </div>
             <br>
             <div class="option">
-                <label class="option-label" style="display:inline-block">품목</label><input id="input_pdt_code" type="text" class="option-sector" placeholder="CODE"><input id="input_pdt_name" type="text" class="option-sector" placeholder="NAME">
-                <button class="option-button"><img src="/images/button_search.jpg"></button>
+                <label class="option-label" style="display:inline-block">품목</label><input id="input_pdt_code" type="text" class="option-sector" placeholder="CODE" readonly><input id="input_pdt_name" type="text" class="option-sector" placeholder="NAME" readonly>
+                <button class="option-button" id="button_pdt"><img src="/images/button_search.jpg"></button>
             </div>
             <div class="option">
-                <label class="option-label" style="display:inline-block">거래처</label><input id="input_comp_code" type="text" class="option-sector" placeholder="CODE"><input id="input_comp_name" type="text" class="option-sector" placeholder="NAME">
-                <button class="option-button"><img src="/images/button_search.jpg"></button>
+                <label class="option-label" style="display:inline-block">거래처</label><input id="input_comp_code" type="text" class="option-sector" placeholder="CODE" readonly><input id="input_comp_name" type="text" class="option-sector" placeholder="NAME" readonly>
+                <button class="option-button" id="button_comp"><img src="/images/button_search.jpg"></button>
             </div>
             <div class="option">
                 <label class="option-label" style="display:inline-block">진행상태</label><select name="process">
+                    <option value="">전체</option>
                     <option value="진행중">진행중</option>
                     <option value="완료">완료</option>
                 </select>
@@ -48,14 +50,6 @@
         </div>
     </div>
     <div class="middle">
-        <!--
-        <iframe
-            id="search"
-            name="search"
-            class="iframe-search"
-            hidden="true"
-        ></iframe>
-        -->
         <div id="test0">
             <pre>
             수주일자	:	order_date	(추가시 select로 date)
@@ -75,6 +69,14 @@
         <div id="jqxWidget">
             <table id="Grid01"></table>
         </div>
+    </div>
+</div>
+<div id="pop" style="display: none;">
+    <div id="pop_container">
+        <iframe
+            id="pop_iframe"
+            style="display: block; width: 100%; height: 800px;"
+        ></iframe>
     </div>
 </div>
 </body>

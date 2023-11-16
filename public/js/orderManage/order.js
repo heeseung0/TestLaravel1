@@ -1,48 +1,123 @@
 let searchResultColNames = [
-    '관리','번호','공장코드','코드','코드2','값','값2','수정가능여부'
+    '관리','id','수주일자','수주번호','진행상태','거래처코드','거래처',
+    '품목코드','품목명','단위','납품예정일','수주수량',
+    '출하수량','비고'
 ];
 let searchResultColModel = [
-    {name:'empty', index: 'empty', align: "center", formatter:formatOpt, sortable: false, width:150},
-    {name: 'id',        index:'id',         align:'center', width: '100', hidden:true},
-    {name: 'factory',      index:'factory',       align:'center', width:'100', editable:true,},
-    {name: 'code',   index:'code',    align:'center', width:'100', editable:true,},
-    {name: 'code2',   index:'code2',    align:'center', width:'100', editable:true,},
-    {name: 'value',   index:'value',    align:'center', width:'150', editable:true,},
-    {name: 'value2',   index:'value2',    align:'center', width:'150', editable:true,},
-    {name: 'fixed',   index:'fixed',    align:'center', width:'150', hidden:true},
+    {name:'empty', index: 'empty', align: "center", formatter:formatOpt, sortable: false, width:110},
+    {name: 'id',   index:'id',         align:'center', width: '100', hidden:true},
+    {name: 'order_date',        index:'order_date',         align:'center', width:'50', editable:true,
+        // select date
+        formatter: "date", formatoptions: {newformat: "Y-m-d"}, editoptions: { dataInit: function (elem) { $(elem).datepicker({
+                dateFormat: 'yy-mm-dd',
+                showMonthAfterYear: true,
+                changeYear: true,
+                changeMonth: true,
+                monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                dayNamesMin: ['일','월','화','수','목','금','토'],
+            }); }}  },
+    {name: 'num',               index:'num',                align:'center', width:'50', editable:true,},
+    {name: 'process',           index:'process',            align:'center', width:'40', editable:true,
+        // select value
+        edittype: 'select', formatter: 'select', editoptions: {value: {"진행중":"진행중", "완료":"완료"}} },
+    {name: 'order_addr',        index:'order_addr',         align:'center', width:'50', editable:true,
+        edittype: 'select', formatter: 'select', editoptions: {value: initCompany()}},
+    {name: 'order_addr_name',   index:'order_addr_name',    align:'center', width:'100', editable:false,},
+    {name: 'order_pdt',         index:'order_pdt',          align:'center', width:'50', editable:true,
+        edittype: 'select', formatter: 'select', editoptions: {value: initBom()}},
+    {name: 'pdt_name',          index:'pdt_name',           align:'center', width:'50', editable:false,},
+    {name: 'pdt_unit',          index:'pdt_unit',           align:'center', width:'25', editable:false,},
+    {name: 'order_dead',        index:'order_dead',         align:'center', width:'50', editable:true,
+        formatter: "date", formatoptions: {newformat: "Y-m-d"}, editoptions: { dataInit: function (elem) { $(elem).datepicker({
+                dateFormat: 'yy-mm-dd',
+                showMonthAfterYear: true,
+                changeYear: true,
+                changeMonth: true,
+                monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                dayNamesMin: ['일','월','화','수','목','금','토'],
+            }); }}  },
+    {name: 'count1',            index:'count1',             align:'center', width:'50', editable:true,},
+    {name: 'count2',            index:'count2',             align:'center', width:'50', editable:true,},
+    {name: 'etc',               index:'etc',                align:'center', width:'90', editable:true,},
 ]
 
-let nullFormatter = function(cellvalue, options, rowObject) {
-    if(cellvalue === undefined || isNull(cellvalue) || cellvalue === 'NULL') {
-        cellvalue = '';
-    }
+function initCompany(){
+    let value = {};
+    $.ajax({
+        type: 'get',
+        url: '/baseinfo/company/gets',
+        data: {
+            name: '',
+            code: '',
+            addr: ''
+        },success: (res) => {
+            res.forEach ((arr) => {
+                let key = arr['code'];
+                value[key] = arr['code'];
+                //value[key] = arr['name'];
+            });
+        },error: (err) => {
+            console.log(err);
+        }
+    });
+    return value;
+}
 
-    return cellvalue;
+function initBom(){
+    let value = {};
+    $.ajax({
+        type: 'get',
+        url: '/baseinfo/bom/gets',
+        data: {
+            up_cd: 'all'
+        },success: (res) => {
+            res.forEach ((arr) => {
+                let key = arr['prd_cd'];
+                value[key] = arr['prd_cd'];
+                //value[key] = arr['prd_name'];
+            });
+        },error: (err) => {
+            console.log(err);
+        }
+    });
+    return value;
 }
 
 $(document).ready(function () {
     //$("#test0").hide();
+/*
     $(document).on("keypress", "input[id='input_factory'],input[id='input_code']", (e) => {
         if(e.keyCode == 13){
             $("button[name='search']").click();
         }
     })
+*/
+    let today = new Date().toISOString().split('T')[0];
+
+    $('#input_date1').val(today.split('-')[0] + '-' + today.split('-')[1] + '-' + '01');
+    $('#input_date2').val(today);
 
     $(document).on("click", "button[name='search']", function () {
         $.ajax({
             type: "get",
-            url: "/baseinfo/common/gets",
+            url: "/orderManage/order/gets",
             data: {
-                factory: $('#input_factory').val(),
-                code: $('#input_code').val(),
+                date1: $('#input_date1').val(),
+                date2: $('#input_date2').val(),
+                num: $('#input_num').val(),
+                pdt_code: $('#input_pdt_code').val(),
+                pdt_name: $('#input_pdt_name').val(),
+                comp_code: $('#input_comp_code').val(),
+                comp_name: $('#input_comp_name').val(),
+                process: $('select[name=process]').val()
             },
             success: (res) => {
                 console.log(res);
 
                 if (res != null) {
-                    $('#testGrid').jqGrid('clearGridData')
-                    $('#testGrid').jqGrid('setGridParam', {data: res, page: 1})
-                    $('#testGrid').trigger('reloadGrid');
+                    $('#Grid01').jqGrid('clearGridData')
+                    $('#Grid01').jqGrid('setGridParam', {data: res, page: 1})
+                    $('#Grid01').trigger('reloadGrid');
                 }
 
                 let jqGridConfig = {
@@ -53,7 +128,7 @@ $(document).ready(function () {
                     autowidth: true,
                 }
 
-                $("#testGrid").jqGrid(jqGridConfig);
+                $("#Grid01").jqGrid(jqGridConfig);
             },error: (err) => {
                 console.log(err);
             }
@@ -62,12 +137,13 @@ $(document).ready(function () {
 
     $(document).on("click", "button[name='add']", function () {
         let init_data = {
-            factory:'F001',
-            fixed:true
+            order_date: today,
+            process: '진행중',
+            order_dead: today
         };
-        let rowId = $("#testGrid").getGridParam("reccount");
+        let rowId = $("#Grid01").getGridParam("reccount");
 
-        $("#testGrid").jqGrid("addRowData", rowId+1, init_data, 'first');
+        $("#Grid01").jqGrid("addRowData", rowId+1, init_data, 'first');
         edit(rowId+1);
     });
 });
@@ -86,32 +162,32 @@ function formatOpt(cellvalue, options, rowObject){
     return str;
 }
 function edit(id){
-    let row = $("#testGrid").jqGrid('getRowData', id);
+    let row = $("#Grid01").jqGrid('getRowData', id);
     //row 데이터로 수정 가능 여부에 따라 if문으로 alert처리
-    $("#testGrid").editRow(id, true);
+    $("#Grid01").editRow(id, true);
 }
 function save(id){
-    let row = $("#testGrid").jqGrid('getRowData', id);
+    let row = $("#Grid01").jqGrid('getRowData', id);
     console.log(row);
 
-    $("#testGrid").editRow(id, false);
-    $("#testGrid").jqGrid('saveRow', id, {
-        "url": "/baseinfo/common/save",
+    $("#Grid01").editRow(id, false);
+    $("#Grid01").jqGrid('saveRow', id, {
+        "url": "/orderManage/order/save",
         "mtype": "POST"
     });
 }
 function cancel(id){
-    $("#testGrid").restoreRow(id);
+    $("#Grid01").restoreRow(id);
 }
 function del(id){
-    let row = $("#testGrid").jqGrid('getRowData', id);
+    let row = $("#Grid01").jqGrid('getRowData', id);
     $.ajax({
         type: "post",
-        url: "/baseinfo/common/del",
+        url: "/orderManage/order/del",
         data: {id: row.id},
         success: (res) => {
             alert('성공적으로 삭제되었습니다.');
-            $("#testGrid").delRowData(id);
+            $("#Grid01").delRowData(id);
         },error: (err) => {
             console.log(err);
         }

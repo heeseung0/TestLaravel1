@@ -23,7 +23,7 @@ class VerifyCsrfToken extends Middleware
         'http://laravel1.localhost/baseinfo/error/save',
         'http://laravel1.localhost/baseinfo/error/del',
 
-        'http://laravel1.localhost/baseinfo/order/save',
-        'http://laravel1.localhost/baseinfo/order/del',
+        'http://laravel1.localhost/orderManage/order/save',
+        'http://laravel1.localhost/orderManage/order/del',
     ];
 }

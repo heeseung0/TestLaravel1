@@ -92,7 +92,7 @@ tbody > .jqgrow:nth-child(2) > td {
 }
 
 .option-sector{
-    width: 80px;
+    width: 75px;
     height: 18px;
     padding: 5px;
 }
@@ -105,9 +105,19 @@ tbody > .jqgrow:nth-child(2) > td {
     padding: 0px;
 }
 
-.iframe-search{
-    position: absolute;
+#pop{
+    position: fixed;
+    top: 20px;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 9999;
+}
+
+#pop_container{
+    min-width: 320px;
+    max-width: 920px;
     width: 100%;
-    height: 70%;
+    height: auto;
+    max-height: 620px;
 }
