@@ -86,7 +86,7 @@ function initBom(){
 let where = '';
 
 $(document).ready(function () {
-    //$("#test0").hide();
+    $("#test0").hide();
 /*
     $(document).on("keypress", "input[id='input_factory'],input[id='input_code']", (e) => {
         if(e.keyCode == 13){
