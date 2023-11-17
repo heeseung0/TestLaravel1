@@ -33,12 +33,12 @@
             </div>
             <br>
             <div class="option">
-                <label class="option-label" style="display:inline-block">품목</label><input id="input_pdt_code" type="text" class="option-sector" placeholder="CODE" readonly><input id="input_pdt_name" type="text" class="option-sector" placeholder="NAME" readonly>
-                <button class="option-button" id="button_pdt"><img src="/images/button_search.jpg"></button>
+                <label class="option-label" style="display:inline-block">품목</label><input id="input_pdt_code" type="text" class="option-sector" placeholder="CODE" readonly><input id="input_pdt_name" type="text" class="option-col-2" placeholder="NAME" readonly>
+                <button class="option-button" name="pdt"><img src="/images/button_search.jpg"></button>
             </div>
             <div class="option">
-                <label class="option-label" style="display:inline-block">거래처</label><input id="input_comp_code" type="text" class="option-sector" placeholder="CODE" readonly><input id="input_comp_name" type="text" class="option-sector" placeholder="NAME" readonly>
-                <button class="option-button" id="button_comp"><img src="/images/button_search.jpg"></button>
+                <label class="option-label" style="display:inline-block">거래처</label><input id="input_comp_code" type="text" class="option-sector" placeholder="CODE" readonly><input id="input_comp_name" type="text" class="option-col-2" placeholder="NAME" readonly>
+                <button class="option-button" name="comp"><img src="/images/button_search.jpg"></button>
             </div>
             <div class="option">
                 <label class="option-label" style="display:inline-block">진행상태</label><select name="process">
@@ -73,10 +73,12 @@
 </div>
 <div id="pop" style="display: none;">
     <div id="pop_container">
-        <iframe
-            id="pop_iframe"
-            style="display: block; width: 100%; height: 800px;"
-        ></iframe>
+        <div class="top">
+            <button class="option-button" name="close"><img src="/images/button_search.jpg"></button>
+        </div>
+        <div id="jqxWidget">
+            <table id="Grid02"></table>
+        </div>
     </div>
 </div>
 </body>

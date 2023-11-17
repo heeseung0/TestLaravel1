@@ -107,17 +107,23 @@ tbody > .jqgrow:nth-child(2) > td {
 
 #pop{
     position: fixed;
-    top: 20px;
+    top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    background: rgba(0, 0, 0, 0.6);
     z-index: 9999;
 }
 
 #pop_container{
-    min-width: 320px;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+
+    min-width: 600px;
     max-width: 920px;
-    width: 100%;
-    height: auto;
-    max-height: 620px;
+    min-height: 600px;
+    max-height: 920px;
+    width: 80%;
+    height: 80%;
 }
