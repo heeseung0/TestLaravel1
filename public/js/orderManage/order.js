@@ -37,7 +37,7 @@ let searchResultColModel = [
                 dayNamesMin: ['일','월','화','수','목','금','토'],
             }); }}  },
     {name: 'count1',            index:'count1',             align:'center', width:'50', editable:true,},
-    {name: 'count2',            index:'count2',             align:'center', width:'50', editable:true,},
+    {name: 'count2',            index:'count2',             align:'center', width:'50', editable:false,},
     {name: 'etc',               index:'etc',                align:'center', width:'90', editable:true,},
 ]
 
@@ -114,8 +114,6 @@ $(document).ready(function () {
                 process: $('select[name=process]').val()
             },
             success: (res) => {
-                console.log(res);
-
                 if (res != null) {
                     $('#Grid01').jqGrid('clearGridData')
                     $('#Grid01').jqGrid('setGridParam', {data: res, page: 1})

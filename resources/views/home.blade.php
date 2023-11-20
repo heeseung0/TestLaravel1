@@ -23,15 +23,15 @@
                         <li class="order_ul">수주관리
                             <ul class="order_li" hidden>
                                 <li><a href="/orderManage/order" target="main-iframe">수주처리</a></li>
-                                <li><a href="/viewtest4" target="main-iframe">출하지시</a></li>
-                                <li><a href="/viewtest1" target="main-iframe">제품출고</a></li>
-                                <li><a href="/viewtest2" target="main-iframe">판매처리</a></li>
+                                <!--    <li><a href="/viewtest4" target="main-iframe">출하지시</a></li> -->
+                                <li><a href="/orderManage/shipout" target="main-iframe">제품출고</a></li>
+                                <!--    <li><a href="/viewtest2" target="main-iframe">판매처리</a></li> -->
                             </ul>
                         </li>
                         <li class="process_ul">공정관리
                             <ul class="process_li" hidden>
                                 <li><a href="/viewtest3" target="main-iframe">생산계획</a></li>
-                                <li><a href="/viewtest4" target="main-iframe">작업지시</a></li>
+                                <!--    <li><a href="/viewtest4" target="main-iframe">작업지시</a></li> -->
                                 <li><a href="/viewtest1" target="main-iframe">작업일보</a></li>
                             </ul>
                         </li>
