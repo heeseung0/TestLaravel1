@@ -27,5 +27,9 @@ class VerifyCsrfToken extends Middleware
         'http://laravel1.localhost/orderManage/order/del',
         'http://laravel1.localhost/orderManage/shipout/save',
         'http://laravel1.localhost/orderManage/shipout/del',
+
+        'http://laravel1.localhost/process/plan/save',
+        'http://laravel1.localhost/process/plan/del',
+
     ];
 }

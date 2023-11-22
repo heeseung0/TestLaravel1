@@ -42,6 +42,10 @@ Route::middleware(['login'])->group(function() {
         return view('/orderManage/shipout');
     });
 
+    Route::get('/process/plan', function(){
+        return view('/process/plan');
+    });
+
     //이하 테스트 코드
     Route::get('/viewtest1', function(){
         return view('/test/viewtest1');
@@ -83,4 +87,8 @@ Route::post('/orderManage/order/del', [App\Http\Controllers\OrderManageControlle
 Route::get('/orderManage/shipout/gets', [App\Http\Controllers\OrderManageController::class, 'getShipout']);
 Route::post('/orderManage/shipout/save', [App\Http\Controllers\OrderManageController::class, 'saveShipout']);
 Route::post('/orderManage/shipout/del', [App\Http\Controllers\OrderManageController::class, 'deleteShipout']);
+
+Route::get('/process/plan/gets', [App\Http\Controllers\ProcessController::class, 'getPlan']);
+Route::post('/process/plan/save', [App\Http\Controllers\ProcessController::class, 'savePlan']);
+Route::post('/process/plan/del', [App\Http\Controllers\ProcessController::class, 'deletePlan']);
 
