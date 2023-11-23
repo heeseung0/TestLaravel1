@@ -15,6 +15,7 @@
                                 <li><a href="/baseinfo/user" target="main-iframe">사용자관리</a></li>
                                 <li><a href="/baseinfo/commoncode" target="main-iframe">표준코드 설정</a></li>
                                 <li><a href="/baseinfo/company" target="main-iframe">업체관리</a></li>
+                                <li><a href="/baseinfo/warehouse" target="main-iframe">창고관리</a></li>
                                 <!--    <li><a href="/viewtest4" target="main-iframe">품목관리</a></li>     -->
                                 <li><a href="/baseinfo/bom" target="main-iframe">BOM 관리</a></li>
                                 <li><a href="/baseinfo/errorcode" target="main-iframe">불량코드 정보</a></li>
@@ -40,7 +41,7 @@
                                 <li><a href="/viewtest2" target="main-iframe">자재 발주</a></li>
                                 <li><a href="/viewtest3" target="main-iframe">자재 입고</a></li>
                                 <li><a href="/viewtest4" target="main-iframe">자재 불출</a></li>
-                                <li><a href="/viewtest1" target="main-iframe">재고 조회</a></li>
+                                <li><a href="/logistic/stock" target="main-iframe">재고 조회</a></li>
                             </ul>
                         </li>
                     </ul>

@@ -28,6 +28,9 @@ Route::middleware(['login'])->group(function() {
     Route::get('/baseinfo/company', function(){
         return view('/baseinfo/company');
     });
+    Route::get('/baseinfo/warehouse', function(){
+        return view('/baseinfo/warehouse');
+    });
     Route::get('/baseinfo/bom', function(){
         return view('/baseinfo/bom');
     });
@@ -44,6 +47,10 @@ Route::middleware(['login'])->group(function() {
 
     Route::get('/process/plan', function(){
         return view('/process/plan');
+    });
+
+    Route::get('/logistic/stock', function(){
+        return view('/logistic/stock');
     });
 
     //이하 테스트 코드
@@ -74,6 +81,9 @@ Route::post('/baseinfo/common/del', [App\Http\Controllers\BaseInfoController::cl
 Route::get('/baseinfo/company/gets', [App\Http\Controllers\BaseInfoController::class, 'getCompany']);
 Route::post('/baseinfo/company/save', [App\Http\Controllers\BaseInfoController::class, 'saveCompany']);
 Route::post('/baseinfo/company/del', [App\Http\Controllers\BaseInfoController::class, 'deleteCompany']);
+Route::get('/baseinfo/warehouse/gets', [App\Http\Controllers\BaseInfoController::class, 'getWarehouse']);
+Route::post('/baseinfo/warehouse/save', [App\Http\Controllers\BaseInfoController::class, 'saveWarehouse']);
+Route::post('/baseinfo/warehouse/del', [App\Http\Controllers\BaseInfoController::class, 'deleteWarehouse']);
 Route::get('/baseinfo/bom/gets', [App\Http\Controllers\BaseInfoController::class, 'getBOM']);
 Route::post('/baseinfo/bom/save', [App\Http\Controllers\BaseInfoController::class, 'saveBOM']);
 Route::post('/baseinfo/bom/del', [App\Http\Controllers\BaseInfoController::class, 'deleteBOM']);
@@ -91,4 +101,8 @@ Route::post('/orderManage/shipout/del', [App\Http\Controllers\OrderManageControl
 Route::get('/process/plan/gets', [App\Http\Controllers\ProcessController::class, 'getPlan']);
 Route::post('/process/plan/save', [App\Http\Controllers\ProcessController::class, 'savePlan']);
 Route::post('/process/plan/del', [App\Http\Controllers\ProcessController::class, 'deletePlan']);
+
+Route::get('/logistic/stock/gets', [App\Http\Controllers\LogisticController::class, 'getStock']);
+Route::post('/logistic/stock/save', [App\Http\Controllers\LogisticController::class, 'saveStock']);
+Route::post('/logistic/stock/del', [App\Http\Controllers\LogisticController::class, 'deleteStock']);
 

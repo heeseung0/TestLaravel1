@@ -43,7 +43,12 @@ class OrderManageController extends Controller
             ->leftJoin('company','order.order_addr', '=', 'company.code')
             ->leftJoin('bom','order.order_pdt', '=', 'bom.prd_cd')
             ->leftJoin('shipout', 'order.num', '=', 'shipout.ordernum')
-            ->select('order.*', 'company.name AS order_addr_name', 'bom.prd_name AS pdt_name', 'bom.prd_unit AS pdt_unit', DB::raw('SUM(shipout.`count`) AS count2'))
+            ->select(
+                'order.*',
+                'company.name AS order_addr_name',
+                'bom.prd_name AS pdt_name', 'bom.prd_unit AS pdt_unit',
+                DB::raw('SUM(shipout.`count`) AS count2')
+            )
             ->get();
     }
     public function saveOrder(){
@@ -60,7 +65,6 @@ class OrderManageController extends Controller
                     'order_pdt'     =>  $_POST['order_pdt'],
                     'order_dead'    =>  $_POST['order_dead'],
                     'count1'        =>  $_POST['count1'],
-                    'count2'        =>  $_POST['count2'],
                     'etc'           =>  $_POST['etc']
                 ));
         }else{
@@ -74,7 +78,6 @@ class OrderManageController extends Controller
                     'order_pdt'     =>  $_POST['order_pdt'],
                     'order_dead'    =>  $_POST['order_dead'],
                     'count1'        =>  $_POST['count1'],
-                    'count2'        =>  $_POST['count2'],
                     'etc'           =>  $_POST['etc']
                 ));
         }

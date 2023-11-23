@@ -132,6 +132,45 @@ class BaseInfoController extends Controller
             ->delete();
     }
 
+    public function getWarehouse(){
+        if(isset($_GET['all'])) {
+            return DB::table('warehouse')
+                ->orderBy('id')
+                ->get();
+        }else{
+            return DB::table('warehouse')
+                ->where('name', 'like', '%' . $_GET['name'] . '%')
+                ->where('code', 'like', '%' . $_GET['code'] . '%')
+                ->where('address', 'like', '%' . $_GET['addr'] . '%')
+                ->orderBy('id', 'ASC')
+                ->orderBy('code', 'DESC')
+                ->get();
+        }
+    }
+
+    public function saveWarehouse(){
+        $message = " ";
+        $state = 0;
+        DB::select("call proc_warehouse_CU(?,?,?,?,?,?,?)",
+            array(
+                $message,
+                $state,
+                $_POST['id'],
+                $_POST['code'],
+                $_POST['name'],
+                $_POST["address"],
+                $_POST['etc']
+            )
+        );
+        return $message;
+    }
+
+    public function deleteWarehouse(){
+        DB::table('warehouse')
+            ->where('id','like',$_POST['id'])
+            ->delete();
+    }
+
     public function getBOM(){
         if($_GET['up_cd']=='all'){
             return DB::table('bom')

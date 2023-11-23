@@ -32,10 +32,11 @@ class ProcessController extends Controller
             ->where('created_at', '<=',$date2)
             ->where('plan.prd_cd','like','%'.$prd_cd.'%')
             ->leftJoin('bom','plan.prd_cd','=','bom.prd_cd')
+            ->leftJoin('stock','plan.prd_cd', '=', 'stock.prd_cd')
             ->select('plan.*', 'bom.*')
             ->orderBy('created_at')
             ->orderBy('plan.prd_cd')
-            ->select('plan.*','bom.prd_name','bom.prd_unit')
+            ->select('plan.*','bom.prd_name','bom.prd_unit','stock.stock')
             ->get();
     }
     public function savePlan(){
