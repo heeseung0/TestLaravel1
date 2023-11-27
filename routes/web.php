@@ -48,6 +48,9 @@ Route::middleware(['login'])->group(function() {
     Route::get('/process/plan', function(){
         return view('/process/plan');
     });
+    Route::get('/process/process', function(){
+        return view('/process/process');
+    });
 
     Route::get('/logistic/stock', function(){
         return view('/logistic/stock');
@@ -101,6 +104,8 @@ Route::post('/orderManage/shipout/del', [App\Http\Controllers\OrderManageControl
 Route::get('/process/plan/gets', [App\Http\Controllers\ProcessController::class, 'getPlan']);
 Route::post('/process/plan/save', [App\Http\Controllers\ProcessController::class, 'savePlan']);
 Route::post('/process/plan/del', [App\Http\Controllers\ProcessController::class, 'deletePlan']);
+Route::get('/process/process/gets', [App\Http\Controllers\ProcessController::class, 'getProcess']);
+Route::post('/process/process/save', [App\Http\Controllers\ProcessController::class, 'saveProcess']);
 
 Route::get('/logistic/stock/gets', [App\Http\Controllers\LogisticController::class, 'getStock']);
 Route::post('/logistic/stock/save', [App\Http\Controllers\LogisticController::class, 'saveStock']);

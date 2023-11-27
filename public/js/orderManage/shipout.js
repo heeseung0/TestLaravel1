@@ -88,10 +88,10 @@ function formatOpt(cellvalue, options, rowObject){
     let str = "";
     let row_id = options.rowId;
     str += "<div class=\"btn-group\">";
-    str += " <button onclick=\"javascript:edit('" + row_id + "')\">수정</button>";
+    //str += " <button onclick=\"javascript:edit('" + row_id + "')\">수정</button>";
     str += " <button onclick=\"javascript:save('" + row_id + "')\">저장</button>";
     str += " <button onclick=\"javascript:cancel('" + row_id + "')\">취소</button>";
-    str += " <button onclick=\"javascript:del('" + row_id + "')\">삭제</button>";
+    //str += " <button onclick=\"javascript:del('" + row_id + "')\">삭제</button>";
     str += "</div>";
 
     return str;
@@ -112,7 +112,7 @@ function save(id){
             ordernum: row.ordernum,
             count: row.count
         },success: (res) => {
-            console.log(res);
+            alert(JSON.stringify(res).split(':')[1].split('"')[1]);
             $("#Grid01").editRow(id, false);
         },error: (err) => {
             console.log(err);

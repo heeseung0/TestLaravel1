@@ -33,7 +33,7 @@
                             <ul class="process_li" hidden>
                                 <li><a href="/process/plan" target="main-iframe">생산계획</a></li>
                                 <!--    <li><a href="/viewtest4" target="main-iframe">작업지시</a></li> -->
-                                <li><a href="/process/report" target="main-iframe">작업일보</a></li>
+                                <li><a href="/process/process" target="main-iframe">작업일보</a></li>
                             </ul>
                         </li>
                         <li class="log_ul">물류관리

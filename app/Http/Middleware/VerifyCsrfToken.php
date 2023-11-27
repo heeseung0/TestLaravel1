@@ -32,6 +32,7 @@ class VerifyCsrfToken extends Middleware
 
         'http://laravel1.localhost/process/plan/save',
         'http://laravel1.localhost/process/plan/del',
+        'http://laravel1.localhost/process/process/save',
 
         'http://laravel1.localhost/logistic/stock/save',
         'http://laravel1.localhost/logistic/stock/del',

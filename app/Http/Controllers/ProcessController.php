@@ -67,4 +67,39 @@ class ProcessController extends Controller
             ->delete();
     }
 
+    public function getProcess(){
+        $date1 = isset($_GET["date1"]) ? $_GET["date1"] : '';
+        $date2 = isset($_GET["date2"]) ? $_GET["date2"] : '';
+        $prd_cd = $_GET['prd_cd'];
+
+        return DB::table('process')
+            ->where('created_at','>=',$date1)
+            ->where('created_at', '<=',$date2)
+            ->where('process.prd_cd','like','%'.$prd_cd.'%')
+            ->leftJoin('bom','process.prd_cd','=','bom.prd_cd')
+            ->select('process.*', 'bom.*')
+            ->orderBy('created_at')
+            ->orderBy('process.prd_cd')
+            ->select('process.*','bom.prd_name','bom.prd_unit')
+            ->get();
+    }
+    public function saveProcess(){
+        $message = "test";
+        $state = 0;
+        $id = $_POST['id'];
+        $prd_cd = $_POST['prd_cd'];
+        $count = $_POST["count"];
+
+        $message = DB::select("call proc_process_C(?,?,?,?,?)",
+            array(
+                $message,
+                $state,
+                $id,
+                $prd_cd,
+                $count
+            )
+        );
+        return $message[0];
+    }
+
 }

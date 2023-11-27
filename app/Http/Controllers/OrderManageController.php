@@ -108,7 +108,7 @@ class OrderManageController extends Controller
         $ordernum = $_POST["ordernum"];
         $count = $_POST["count"];
 
-        DB::select("call proc_shipout_CU(?,?,?,?,?)",
+        $message = DB::select("call proc_shipout_CU(?,?,?,?,?)",
             array(
                 $message,
                 $state,
@@ -118,7 +118,7 @@ class OrderManageController extends Controller
             )
         );
 
-        return $message;
+        return $message[0];
     }
     public function deleteShipout(){
         DB::table('shipout')
